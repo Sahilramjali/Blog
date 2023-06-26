@@ -1,0 +1,77 @@
+* {
+
+  box-sizing: border-box;
+}
+
+:root {
+  --padding-main: 1.5rem;
+  --text-color: #333;
+  --title-color: #006989;
+  --title-size: 2.5rem;
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+main {
+  max-width: 1280px;
+  
+  padding-top: var(--padding-main);
+  padding-left: 2rem;
+  padding-right: 2rem;
+ 
+
+
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+
+}
+
+header .logo {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+header nav ul {
+  display: flex;
+  gap: 1rem;
+  list-style-type: none;
+
+}
+
+header nav ul li {
+  cursor: pointer;
+
+}
+
+.blog .image {
+  height: 70vh;
+  width: 40rem;
+
+
+}
+
+img {
+  height: 70vh;
+  width: 40rem;
+  object-fit: contain;
+
+
+}
+
+.title {
+  font-size: var(--title-size);
+  color: var(--title-color);
+}
