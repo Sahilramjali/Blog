@@ -1,15 +1,27 @@
-import BlogSection from "./components/BlogSection"
-import Header from "./components/header"
+import BlogClick from "./components/BlogClick"
+import Login from "./components/authComponents/Login";
+import Register from "./components/authComponents/Register";
+import {  Route, Routes } from 'react-router-dom';
+import Layout from "./layout";
+
 
 
 function App() {
- 
+
 
   return (
-    <main>
-      <Header/>
-      <BlogSection/>
-    </main>
+    
+      <Routes>
+
+        <Route path="/" element={<Layout />}>
+          <Route index element={<BlogClick />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+        </Route>
+      </Routes>
+    
+
+
   )
 }
 
