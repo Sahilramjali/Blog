@@ -4,10 +4,10 @@ const Register = () => {
     <div>
     
       <form>
-        <input/>
+        <input />
       </form>
     </div>
   )
 }
 
-export default Register
+export default Register;

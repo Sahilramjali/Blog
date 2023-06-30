@@ -28,7 +28,7 @@ body {
 
 main {
   max-width: 1280px;
-  width: 100vw;
+  width: 100%;
   padding-top: var(--padding-main);
   padding-left: 2rem;
   padding-right: 2rem;
@@ -41,40 +41,7 @@ header {
   margin-bottom: 1.5rem;
 }
 
-/* header .navBar {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
-  align-items: center;
-  flex-direction: row;
 
-}
-
-
-header .navBar .logo {
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 1.5rem;
-
-}
-
-header .navBar ul {
-  display: flex;
-  gap: 1rem;
-  list-style-type: none;
-
-}
-
-header nav ul li {
-  cursor: pointer;
-
-}
-
-header nav ul li .link,
-header .logo .link {
-  text-decoration: none;
-  color: inherit;
-} */
 /* navBar */
 .navBar {
   display: flex;
