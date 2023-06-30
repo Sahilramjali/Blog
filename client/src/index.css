@@ -28,7 +28,8 @@ body {
 
 main {
   max-width: 1280px;
-  width: 100%;
+  width: 100dvw;
+  height: 100vh;
   padding-top: var(--padding-main);
   padding-left: 2rem;
   padding-right: 2rem;
@@ -46,7 +47,7 @@ header {
 .navBar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+ align-items: center;
 
 }
 
@@ -166,6 +167,7 @@ img {
 /* .mobile-menu-link {
   display: none;
 } */
+/* login  */
 
 
 @media only screen and (max-width: 600px) {
