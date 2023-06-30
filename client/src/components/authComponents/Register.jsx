@@ -1,7 +1,12 @@
 
 const Register = () => {
   return (
-    <div>Register</div>
+    <div>
+    
+      <form>
+        <input/>
+      </form>
+    </div>
   )
 }
 
