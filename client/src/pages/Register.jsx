@@ -1,11 +1,13 @@
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import { useState } from "react";
+
+import  VisibilityIcon  from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { useState } from 'react';
 const InitialData = {
+  username:"",
   email: "",
   password: "",
 };
-const Login = () => {
+const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [Data, setData] = useState(InitialData);
   const handleShowPassword = () => {
@@ -25,16 +27,28 @@ const Login = () => {
   return (
     <section className="login-div">
       <div className="Form-div">
-        <h2>Login</h2>
+        <h2>Register</h2>
         <form onSubmit={onSubmitHandler}>
-          <input
+        <div className='input-div'>
+        <input
+            onChange={handleInput}
+            type="text"
+            placeholder="username"
+            value={Data.username}
+            name="username"
+          />
+        </div>
+        <div className='input-div'>
+        <input
             onChange={handleInput}
             type="email"
             placeholder="email"
             value={Data.email}
             name="email"
           />
-          <div className="password">
+        </div>
+          
+          <div className="input-div">
             <input
               onChange={handleInput}
               type={showPassword ? "text" : "password"}
@@ -43,14 +57,16 @@ const Login = () => {
               name="password"
             />
             <div onClick={handleShowPassword}>
-              {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+              {showPassword ? <VisibilityOffIcon sx={{ color:"grey",fontSize: 20 }}/> : <VisibilityIcon sx={{ color:"grey",fontSize: 20 }}/>}
             </div>
           </div>
-          <button type="submit">Login</button>
+          <div className='button-div'>
+          <button type="submit">Register</button>
+          </div>
         </form>
       </div>
     </section>
   );
-};
+}
 
-export default Login;
+export default Register;

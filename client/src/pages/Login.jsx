@@ -1,12 +1,11 @@
-
-import { VisibilityIcon,VisibilityOffIcon } from '@mui/icons-material/Visibility';
-import { useState } from 'react';
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import { useState } from "react";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 const InitialData = {
-  username:"",
   email: "",
   password: "",
 };
-const Register = () => {
+const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [Data, setData] = useState(InitialData);
   const handleShowPassword = () => {
@@ -26,15 +25,9 @@ const Register = () => {
   return (
     <section className="login-div">
       <div className="Form-div">
-        <h2>Register</h2>
+        <h2>Login</h2>
         <form onSubmit={onSubmitHandler}>
-        <input
-            onChange={handleInput}
-            type="text"
-            placeholder="username"
-            value={Data.username}
-            name="username"
-          />
+          <div className="input-div">
           <input
             onChange={handleInput}
             type="email"
@@ -42,7 +35,8 @@ const Register = () => {
             value={Data.email}
             name="email"
           />
-          <div className="password">
+          </div>
+          <div className="input-div">
             <input
               onChange={handleInput}
               type={showPassword ? "text" : "password"}
@@ -51,14 +45,17 @@ const Register = () => {
               name="password"
             />
             <div onClick={handleShowPassword}>
-              {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+              {showPassword ? <VisibilityOffIcon sx={{color:"grey", fontSize: 20}}/> : <VisibilityIcon sx={{color:"grey",fontSize: 20}}/>}
             </div>
+          </div >
+          <div className="button-div">
+          <button type="submit">Login</button>
           </div>
-          <button type="submit">Register</button>
+         
         </form>
       </div>
     </section>
   );
-}
+};
 
-export default Register;
+export default Login;

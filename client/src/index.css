@@ -168,7 +168,71 @@ img {
   display: none;
 } */
 /* login  */
+.login-div{
+  
+  width: 100%;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.login-div .Form-div{
+  border: 0.2rem solid grey;
+  display: flex;
+  flex-direction: column;
+ 
+ 
+  padding: 1rem;
+  width: 400px;
+}
+.Form-div h2{
+  font-size: 2rem;
+  margin-top: 0;
+  text-align: center;
+}
+
+.Form-div .input-div {
+  display:flex;
+  border-bottom:.5px solid gray;
+  justify-content: start;
+ 
+  width: 100%;
+  height:30px;
+  margin-bottom: .5rem;
+
+}
+.Form-div .input-div input{
+  flex: 1;
+  margin-bottom: 0;
+  border: none;
+  outline: none;
+  inset: 0;
+}
+.Form-div .input-div input:focus{
+  border-bottom:.1rem solid grey;
+  outline: none;
+}
+
+.Form-div .button-div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.Form-div .button-div button{
+  width: 50%;
+  height: 3rem;
+  cursor: pointer;
+  transition: background-color 1s;
+}
+.Form-div .button-div button:hover{
+background-color: #888;
+border:none;
+outline: none;
+color: white;
+border-radius: .1rem;
+
+}
 
 @media only screen and (max-width: 600px) {
   header {
