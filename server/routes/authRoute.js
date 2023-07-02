@@ -1,0 +1,17 @@
+const express=require('express');
+const router=express.Router();
+
+
+const cors=require("cors");
+const {signup}=require("../Controllers/authController");
+
+//middleware
+router.use(
+    cors({
+        credentials:true,
+        origin:"http://localhost:5173",
+    })
+);
+router.post('/signup',signup);
+
+module.exports=router;

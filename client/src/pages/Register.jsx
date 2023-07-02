@@ -1,7 +1,9 @@
 
 import  VisibilityIcon  from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import axios from 'axios';
 import { useState } from 'react';
+import { REGISTER_API_URL } from '../constants/constant';
 const InitialData = {
   username:"",
   email: "",
@@ -19,9 +21,19 @@ const Register = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async(e) => {
+    
     e.preventDefault();
     console.log(Data);
+    const {username,email,password}=Data
+    
+   try{
+    await axios.post(REGISTER_API_URL,{
+      username,email,password
+     });
+   }catch(err){
+    console.log(err);
+   }
     setData(InitialData);
   };
   return (
