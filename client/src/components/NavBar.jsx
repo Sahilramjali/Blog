@@ -34,6 +34,7 @@ const NavBar = () => {
         {
           isLogin ? <li>
             <Link onClick={Logout} className="link" to={'/login'}>Logout</Link>
+            <Link onClick={CloseMenu} className="link" to={'/create'}>Create</Link>
           </li> : (<>
             <li><Link onClick={CloseMenu} className="link" to='/login'>Login</Link></li>
             <li><Link onClick={CloseMenu} className="link" to='/register'>Register</Link></li>

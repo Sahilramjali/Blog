@@ -2,18 +2,20 @@ import { Outlet } from "react-router-dom"
 
 import Header from "./components/header"
 import { Toaster } from "react-hot-toast"
-import { UserProvider } from "./hooks/userInfo"
+// import { UserProvider } from "./hooks/userInfo"
 
 
 
 const Layout = () => {
     return (
         <main>
-            <UserProvider>
+            {/* <UserProvider> */}
                 <Header />
                 <Outlet />
                 <Toaster />
-            </UserProvider>
+            {/* </UserProvider> */}
+
+
 
         </main>
     )
