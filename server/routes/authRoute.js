@@ -3,7 +3,7 @@ const router=express.Router();
 
 
 const cors=require("cors");
-const {signup}=require("../Controllers/authController");
+const {signup, login}=require("../Controllers/authController");
 
 //middleware
 router.use(
@@ -13,5 +13,5 @@ router.use(
     })
 );
 router.post('/signup',signup);
-
+router.post('/login',login);
 module.exports=router;

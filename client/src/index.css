@@ -224,6 +224,7 @@ img {
   height: 3rem;
   cursor: pointer;
   transition: background-color 1s;
+  margin-top: 1.5rem;
 }
 .Form-div .button-div button:hover{
 background-color: #888;
@@ -233,7 +234,19 @@ color: white;
 border-radius: .1rem;
 
 }
-
+.error{
+  color: rgb(173, 28, 28);
+}
+.text{
+  color: grey;
+  text-align: center;
+  padding-top: 1rem;
+}
+.text span{
+  text-decoration: underline;
+  color: #006989;
+  
+}
 @media only screen and (max-width: 600px) {
   header {
     margin-bottom: 1.5rem;

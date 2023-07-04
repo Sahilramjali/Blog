@@ -11,6 +11,7 @@ const NavBar = () => {
   const CloseMenu=()=>{
     setShowMenu(false);
   }
+  
   return (
 
     <nav className="navBar">
