@@ -49,14 +49,17 @@ const login=async(req,res)=>{
         const result=user.toObject();
         delete result.password;
         const token=jwt.sign(result,process.env.JWT_SECERET_KEY);
-      res.cookie('token',token);
+      res.cookie('token',token,{
+        maxAge: 60 * 1000,
+      });
+      
       res.json({Status: "Success",...result});
 
       }else{
-        res.status(400).json({error:"Email or passwor is wrong"})
+        res.json({error:"Email or passwor is wrong"})
       }
     }else{
-      res.status(400).json({
+      res.json({
         error:"User email is not registered"
       })
     }

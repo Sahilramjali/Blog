@@ -1,11 +1,12 @@
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
 import { LOGIN_API_URL } from '../constants/constant';
 import { ValidateEmail } from "../utils/validation";
 import {toast} from 'react-hot-toast'
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../hooks/userInfo";
 const InitialData = {
   email: "",
   password: "",
@@ -13,6 +14,7 @@ const InitialData = {
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [Data, setData] = useState(InitialData);
+  const {handleLogin}=useContext(UserContext)
   const navigate=useNavigate();
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -28,11 +30,15 @@ const Login = () => {
     try{
       const{email,password}=Data;
       if(ValidateEmail(email)){
-        const result=await axios.post(LOGIN_API_URL,{email,password})
+        const result=await axios.post(LOGIN_API_URL,{email,password},{
+          withCredentials:true
+        })
+        console.log(result);
         if(result.data.error){
+
           toast.error(result.data.error)
         }else{
-          
+          handleLogin();
           toast.success("login successfully")
           navigate("/")
         }
