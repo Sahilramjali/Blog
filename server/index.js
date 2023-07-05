@@ -8,7 +8,7 @@ const app=express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/api',require("./routes/authRoute"));
-
+app.use('/api/blog',require("./routes/blog"));
 
 
 //connect mongodb

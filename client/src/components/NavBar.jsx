@@ -4,14 +4,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { useContext, useState } from "react";
 import { UserContext } from "../hooks/userInfo";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const { isLogin,logout } = useContext(UserContext);
  
-  const value=Cookies.get('token');
-  console.log(value);
-  console.log(isLogin);
+  // const value=Cookies.get('token');
+  // console.log(value);
+  // console.log(isLogin);
   const handleShow = () => {
     setShowMenu(!showMenu);
   }
