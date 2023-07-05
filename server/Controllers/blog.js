@@ -1,11 +1,31 @@
 
+const fs=require('fs');
+const blogModel=require("../Models/blog")
+const blogPost=async(req,res)=>{
+try{
+    const {title,summary,content}=req.body;
+    const {originalname,path}=req.file;
+    const parts=originalname.split('.');
+    const extension=parts[parts.length-1];
+    const newPath=path+'.'+extension
+    fs.renameSync(path,newPath);
+   
+    const data=new blogModel({
+       title,
+       summary,
+       content,
+       file:newPath,
+    });
+   const result=await data.save();
+   return res.json(result);
+}catch(err){
+    console.log("error occurs in server");
+    res.status(500).json({
+      error:"Internal Server error"
+    })
+}
 
-const blogPost=(req,res)=>{
- const {title,summary,content}=req.body;
- 
- console.log(req.body);
- console.log(req.file);
- res.json("submitted");
+
 }
 
 module.exports={
