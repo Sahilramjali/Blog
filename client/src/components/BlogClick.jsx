@@ -1,5 +1,5 @@
 
-import{formatISO9075} from 'date-fns';
+import{format} from 'date-fns';
 const BlogClick = ({ title, content, summary,image,createdAt }) => {
     
     
@@ -19,7 +19,7 @@ const BlogClick = ({ title, content, summary,image,createdAt }) => {
           </h2>
           <p className="info">
             <span className="author">Sahil Ramjali</span>
-            {formatISO9075(new Date(createdAt),'MMM d, yyyy HH:mm')}
+            {format(new Date(createdAt),'MMM d, yyyy HH:mm')}
           </p>
           <p className="summary">
             {summary}
