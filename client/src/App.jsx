@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import { useContext } from 'react';
 import { UserContext } from './hooks/userInfo';
 import CreateBlog from './pages/CreateBlog';
+import  Content  from './pages/Content';
 
 
 
@@ -24,6 +25,7 @@ const {isLogin}=useContext(UserContext);
           <Route path="login" element={isLogin?<Navigate to='/'/>:<Login/>} />
           <Route path="register" element={isLogin?<Navigate to='/'/>:<Register/>} />
           <Route path="create" element={isLogin?<CreateBlog/>:<Navigate to='/login'/>}/>
+          <Route path="post/:id" element={<Content/>}/>
         </Route>
       </Routes>
     

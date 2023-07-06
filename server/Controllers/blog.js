@@ -39,7 +39,7 @@ const blogPost = async (req, res) => {
 
 const getBlog = async(req, res) => {
     try {
-         const data=await blogModel.find().populate('author');
+         const data=await blogModel.find().populate('author', ['username']).sort({createdAt:-1}).limit(20);
            
          res.json({data});
     } catch (err) {
@@ -49,8 +49,30 @@ const getBlog = async(req, res) => {
         })
     }
 }
+const getSingleBlog=async(req,res)=>{
+    try{
+        const id=req.params.id;
+        console.log(id);
+        if(id){
+            const data=await blogModel.findOne({"_id":id})
+            console.log(data);
+            res.json(data);
+        }else{
+            res.json({error:"Invalid id"})
+        }
+       
+    }
+    catch (err) {
+        console.log("error occurs in server");
+        console.log(err);
+        res.status(500).json({
+            error: "Internal Server error"
+        })
+    }
+}
 
 module.exports = {
     blogPost,
-    getBlog
+    getBlog,
+    getSingleBlog
 }

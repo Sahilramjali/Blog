@@ -151,7 +151,10 @@ header {
   line-height: 1.4rem;
 
 }
-
+.wrapper .links{
+  text-decoration: none;
+  color: inherit;
+}
 /* .mobile,
 .inactive {
   display: none;

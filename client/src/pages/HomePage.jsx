@@ -28,7 +28,7 @@ const HomePage = () => {
     <>
     {data.map((blog, index) => (
         <BlogClick
-          key={blog.id+index}
+          key={blog._id}
           {...blog}
         />
       ))}

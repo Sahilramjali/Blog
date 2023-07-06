@@ -1,13 +1,14 @@
 
 import{format} from 'date-fns';
 import { IMG_URL } from '../constants/constant';
-const BlogClick = ({ title, content, summary,image,createdAt,author,...rest }) => {
+import { Link } from 'react-router-dom';
+const BlogClick = ({ _id,title, content, summary,image,createdAt,author,...rest }) => {
     const imgSrc=IMG_URL+image;
     
   return (
-    <div className="wrapper" 
-    >
-      <div className="post">
+    <div className="wrapper"> 
+    <Link className='links' to={`/post/${_id}`}>
+    <div className="post">
         <div className="image">
           <img
             src={imgSrc}
@@ -27,6 +28,8 @@ const BlogClick = ({ title, content, summary,image,createdAt,author,...rest }) =
           </p>
         </div>
       </div>
+    </Link>
+      
     </div>
   );
 };
