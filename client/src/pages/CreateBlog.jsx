@@ -5,6 +5,7 @@ import { POST_API_URL, formats, modules } from "../constants/constant";
 import axios from 'axios';
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 const InitialData = {
   title: "",
   summary: "",
@@ -35,8 +36,10 @@ const CreateBlog = () => {
         file,
         content
       }, {
+        withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data',
+           'Authorization':`bearer ${Cookies.get('token')}`
         },
       }).then(res => {
         if (res.data.error) {

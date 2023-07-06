@@ -76,21 +76,14 @@ header {
   display: none;
 }
 
-.blog .image {
+/* .blog .image {
   height: 80vh;
   width: 100%;
+  border-radius: .2rem;
+
+} */
 
 
-}
-
-img {
-  height: 100%;
-
-  width: 100%;
-  object-fit: cover;
-
-
-}
 
 .title {
   font-size: var(--title-size);
@@ -122,14 +115,16 @@ img {
 
 .wrapper .post .image {
   height: 250px;
-  flex: 0.8;
-
+  flex: 0.9;
+  overflow: hidden;
 }
 
 .wrapper .post .image img {
-  height: 100%;
+  display: block;
+ aspect-ratio: 1;
   width: 100%;
-  object-fit: cover;
+  
+  object-fit: fill ;
 }
 
 .post .texts {

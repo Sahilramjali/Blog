@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/api',require("./routes/authRoute"));
 app.use('/api/blog',require("./routes/blog"));
-
+app.use('/uploads',express.static('uploads'));
 
 //connect mongodb
 mongoose.connect(process.env.MONGO_URL).then(()=>{

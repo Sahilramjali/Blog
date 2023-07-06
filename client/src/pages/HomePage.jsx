@@ -23,16 +23,18 @@ const HomePage = () => {
       source.cancel("get request rebert");
     };
   }, []);
-  console.log(data);
+  
   return (
     <>
-      {data.map((blog, index) => (
+    {data.map((blog, index) => (
         <BlogClick
-          key={blog.id}
+          key={blog.id+index}
           {...blog}
         />
       ))}
     </>
+      
+    
   );
 };
 

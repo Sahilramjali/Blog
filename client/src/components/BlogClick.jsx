@@ -1,7 +1,8 @@
 
 import{format} from 'date-fns';
-const BlogClick = ({ title, content, summary,image,createdAt }) => {
-    
+import { IMG_URL } from '../constants/constant';
+const BlogClick = ({ title, content, summary,image,createdAt,author,...rest }) => {
+    const imgSrc=IMG_URL+image;
     
   return (
     <div className="wrapper" 
@@ -9,7 +10,7 @@ const BlogClick = ({ title, content, summary,image,createdAt }) => {
       <div className="post">
         <div className="image">
           <img
-            src={image}
+            src={imgSrc}
             alt={title}
           />
         </div>
@@ -18,7 +19,7 @@ const BlogClick = ({ title, content, summary,image,createdAt }) => {
             {title}
           </h2>
           <p className="info">
-            <span className="author">Sahil Ramjali</span>
+            <span className="author">{author?.username}</span>
             {format(new Date(createdAt),'MMM d, yyyy HH:mm')}
           </p>
           <p className="summary">
