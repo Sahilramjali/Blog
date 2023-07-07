@@ -52,8 +52,11 @@ const login=async(req,res)=>{
       res.cookie('token',token,{
         maxAge: 24*60*60 * 1000,
       });
+      res.cookie('userId',user.id,{
+        maxAge: 24*60*60 * 1000,
+      });
       
-      res.json({Status: "Success",...result});
+      res.json({Status: "Success",result:result});
 
       }else{
         res.json({error:"Email or passwor is wrong"})

@@ -38,7 +38,10 @@ const Login = () => {
 
           toast.error(result.data.error)
         }else{
+          // localStorage.setItem('userData', result.data.result);
+          // setUserData(result.data.result);
           handleLogin();
+          // console.log(userData);
           toast.success("login successfully")
           navigate("/")
         }

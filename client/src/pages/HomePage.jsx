@@ -25,14 +25,14 @@ const HomePage = () => {
   }, []);
   
   return (
-    <>
+    <section className="home-wrapper">
     {data.map((blog, index) => (
         <BlogClick
           key={blog._id}
           {...blog}
         />
       ))}
-    </>
+    </section>
       
     
   );

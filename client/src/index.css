@@ -1,7 +1,8 @@
 *,
 *::before,
 *::after {
-
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -14,6 +15,7 @@
 }
 
 body {
+  
   margin: 0;
   width: 100%;
   display: flex;
@@ -21,34 +23,28 @@ body {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-
-
-
 }
 
 main {
+  
   max-width: 1280px;
-  width: 100dvw;
+  width: 100vw;
   height: 100vh;
   padding-top: var(--padding-main);
   padding-left: 2rem;
   padding-right: 2rem;
-  margin: 0 auto;
-
-
 }
 
 header {
+  background-color: #006989;
   margin-bottom: 1.5rem;
 }
-
 
 /* navBar */
 .navBar {
   display: flex;
   justify-content: space-between;
- align-items: center;
-
+  align-items: center;
 }
 
 .navBar .logo {
@@ -83,8 +79,6 @@ header {
 
 } */
 
-
-
 .title {
   font-size: var(--title-size);
   color: var(--title-color);
@@ -95,23 +89,26 @@ header {
   text-align: justify;
 }
 
+.home-wrapper {
+  width: 100%;
+ padding-bottom: 2rem;
+  
+}
 /* blogclick css */
 .wrapper {
   position: relative;
   margin-bottom: 2.5rem;
-
-
+  background-color: #006989;
+ 
 }
 
 .wrapper .post {
-
   display: flex;
   flex-direction: row;
 
   gap: 20px;
-
-
 }
+
 
 .wrapper .post .image {
   height: 250px;
@@ -121,14 +118,13 @@ header {
 
 .wrapper .post .image img {
   display: block;
- aspect-ratio: 1;
+  aspect-ratio: 1;
   width: 100%;
-  
-  object-fit: fill ;
+
+  object-fit: fill;
 }
 
 .post .texts {
-
   flex: 1;
 }
 
@@ -149,9 +145,8 @@ header {
   margin: 5px 0;
   text-align: justify;
   line-height: 1.4rem;
-
 }
-.wrapper .links{
+.wrapper .links {
   text-decoration: none;
   color: inherit;
 }
@@ -161,121 +156,197 @@ header {
 
 } */
 
-
 /* .mobile-menu-link {
   display: none;
 } */
 /* login  */
-.login-div{
-  
+.login-div {
   width: 100%;
 
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
-.login-div .Form-div{
+.login-div .Form-div {
   border: 0.2rem solid grey;
   display: flex;
   flex-direction: column;
- 
- 
+
   padding: 1rem;
   width: 400px;
 }
-.Form-div h2{
+.Form-div h2 {
   font-size: 2rem;
   margin-top: 0;
   text-align: center;
 }
 
 .Form-div .input-div {
-  display:flex;
-  border-bottom:.5px solid gray;
+  display: flex;
+  border-bottom: 0.5px solid gray;
   justify-content: start;
- 
-  width: 100%;
-  height:30px;
-  margin-bottom: .5rem;
 
+  width: 100%;
+  height: 30px;
+  margin-bottom: 0.5rem;
 }
-.Form-div .input-div input{
+.Form-div .input-div input {
   flex: 1;
   margin-bottom: 0;
   border: none;
   outline: none;
   inset: 0;
 }
-.Form-div .input-div input:focus{
-  border-bottom:.1rem solid grey;
+.Form-div .input-div input:focus {
+  border-bottom: 0.1rem solid grey;
   outline: none;
 }
 
-.Form-div .button-div{
+.Form-div .button-div {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-.Form-div .button-div button, .createBlog form button{
+.Form-div .button-div button,
+.createBlog form button {
   width: 50%;
   height: 3rem;
   cursor: pointer;
   transition: background-color 1s;
   margin-top: 1.5rem;
 }
-.Form-div .button-div button:hover,.createBlog form button:hover{
-background-color: #888;
-border:none;
-outline: none;
-color: white;
-border-radius: .1rem;
-
+.Form-div .button-div button:hover,
+.createBlog form button:hover {
+  background-color: #888;
+  border: none;
+  outline: none;
+  color: white;
+  border-radius: 0.1rem;
 }
-.error{
+.error {
   color: rgb(173, 28, 28);
-  
 }
 /* input:invalid[focused="true"] ~ .error{
   display: block;
 } */
 
-.text{
+.text {
   color: grey;
   text-align: center;
   padding-top: 1rem;
 }
-.text span{
+.text span {
   text-decoration: underline;
   color: #006989;
-  
 }
 /* create blog page */
-h3{
+h3 {
   text-align: center;
 }
-.createBlog{
+.createBlog {
   display: flex;
   flex-direction: column;
   padding: 1rem;
 }
 
-
-.createBlog form .create-input{
+.createBlog form .create-input {
   width: 100%;
   height: 2rem;
   margin-bottom: 1rem;
 }
 
-.createBlog form .create-input input{
+.createBlog form .create-input input {
   width: 100%;
   height: 100%;
-
 }
-.createBlog form .post{
+.createBlog form .post {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+/* content page */
+.content {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  justify-content: start;
+  align-items: start;
+  gap: 2rem;
+  padding-bottom: 4rem;
+}
+.content .content-image {
+  width: 100%;
+  height: 25rem;
+}
+
+.content .content-image img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+  object-fit: fill;
+}
+.content .main-content {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center ; */
+}
+.content .main-content img {
+  height: 450px;
+  width: 450px;
+  position: relative;
+  left: 30%;
+  /* left: 15rem; */
+}
+.content .main-content p {
+  text-align: justify;
+  line-height: 1.4rem;
+  
+}
+.content .buttons{
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  
+  justify-content: end;
+  align-items: flex-end;
+
+  gap: 2rem;
+  height: 2rem
+
+}
+
+.content .buttons button{
+  width: 13%;
+  height: 100%;
+  border-radius: .2rem;
+  border:none;
+  outline: none;
+  cursor: pointer;
+}
+.content .buttons .update{
+  border:.1rem solid #006989;
+  color: #006989;
+  
+}
+.content .buttons .update:hover{
+    background-color: #006989;
+    color: white;
+}
+.content .buttons .delete{
+  border:.1rem solid red;
+  color: red;
+  
+}
+.content .buttons .delete:hover{
+    background-color: red;
+    color: white;
 }
 @media only screen and (max-width: 600px) {
   header {
@@ -320,8 +391,6 @@ h3{
   .blog .image {
     height: 100vh;
     width: 40rem;
-
-
   }
 
   .title {
@@ -342,9 +411,9 @@ h3{
   }
 
   .mobile {
-    display: block
+    display: block;
   }
-/* .link{
+  /* .link{
   padding: 1.5rem;
     width: 100%;
     display: table;
@@ -361,5 +430,4 @@ h3{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
       rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   } */
-
 }

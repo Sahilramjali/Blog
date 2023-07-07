@@ -17,6 +17,7 @@ const CreateBlog = () => {
   const [Data, setData] = useState(InitialData);
   const [content, setContent] = useState('');
   const [file, setFile] = useState('');
+
   const handleChange = (e) => {
     setData((prev) => ({
       ...prev,
