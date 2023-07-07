@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { GET_SINGLE_BLOG_API_URL,IMG_URL,DELETE_BLOG_BY_ID } from "../constants/constant";
 import {toast} from 'react-hot-toast';
 
-
+import Cookies from "js-cookie";
 
  const Content = () => {
    const naviagte=useNavigate();
@@ -22,7 +22,13 @@ import {toast} from 'react-hot-toast';
     },[id])
     
     const handleDelete=()=>{
-      axios.delete(DELETE_BLOG_BY_ID+id).then(res=>{
+      console.log(DELETE_BLOG_BY_ID+id);
+      axios.delete(DELETE_BLOG_BY_ID+id, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+           'Authorization':`bearer ${Cookies.get('token')}`
+        }}).then(res=>{
         if(res.data.error){
           toast.error(res.data.error);
         }else{
@@ -47,8 +53,8 @@ import {toast} from 'react-hot-toast';
       
       <main className="main-content" dangerouslySetInnerHTML={{__html:blogInfo.content}}/>
        {userId===blogInfo.author&&<div className="buttons">
-          <button onClick={handleDelete} className="update">Update</button>
-          <button className="delete">Delete</button>
+          <button  className="update">Update</button>
+          <button onClick={handleDelete}className="delete">Delete</button>
        </div>}
      
     </section>

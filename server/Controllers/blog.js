@@ -56,7 +56,7 @@ const getSingleBlog=async(req,res)=>{
         console.log(id);
         if(id){
             const data=await blogModel.findOne({"_id":id})
-            console.log(data);
+            // console.log(data);
             res.json(data);
         }else{
             res.json({error:"Invalid id"})
@@ -75,14 +75,20 @@ const getSingleBlog=async(req,res)=>{
 const deletBlog=async(req,res)=>{
     try{
         const token= jwt.verify(req.headers.authorization.split(' ')[1],process.env.JWT_SECERET_KEY);
-        const userId=req.cookies[1];
-        const params=req.paams.id;
+        const {userId}=req.cookies;
+        const params=req.params.id;
         console.log(userId);
-        if(params&&token.id===userId){
-            const data=await blogModel.findOne({"_id":params})
-            if(data.author._id===userId){
-              blogModel.deleteOne({_id:params})
-              res.json("item deleted")
+        if(params&&token._id===userId){
+            const data=await blogModel.findOne({"_id":params}).populate('author')
+            console.log(data.author._id.toString());
+
+            if(data.author._id.toString()===userId){
+              blogModel.deleteOne({_id:params}).then(()=>{
+                res.json("item deleted")
+              }).catch(err=>{
+                res.json(err)
+              })
+              
             }else{
                 res.json({error:"delete operation cannot be performed by you"})
             }
