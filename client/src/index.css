@@ -26,9 +26,9 @@ body {
 }
 
 main {
-  
+  /* box-sizing: border-box; */
   max-width: 1280px;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   padding-top: var(--padding-main);
   padding-left: 2rem;
@@ -38,6 +38,7 @@ main {
 header {
   background-color: #006989;
   margin-bottom: 1.5rem;
+ 
 }
 
 /* navBar */
@@ -111,21 +112,26 @@ header {
 
 
 .wrapper .post .image {
-  height: 250px;
+  height: 15rem;
   flex: 0.9;
   overflow: hidden;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+
 }
 
 .wrapper .post .image img {
-  display: block;
-  aspect-ratio: 1;
-  width: 100%;
 
-  object-fit: fill;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .post .texts {
   flex: 1;
+  padding: .5rem;
 }
 
 .post .texts h2 {
@@ -272,19 +278,21 @@ h3 {
   width: 100%;
   justify-content: start;
   align-items: start;
-  gap: 2rem;
+  
   padding-bottom: 4rem;
 }
 .content .content-image {
+  max-height: 25rem;
   width: 100%;
-  height: 25rem;
+  display: flex;
+  overflow: hidden;
 }
 
 .content .content-image img {
-  width: 100%;
   height: 100%;
-  aspect-ratio: 1;
-  object-fit: fill;
+  width: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 .content .main-content {
   margin: 0;
@@ -386,6 +394,7 @@ h3 {
     opacity: 1;
     transition: all 0.5s ease;
     z-index: 1;
+  
   }
 
   .blog .image {

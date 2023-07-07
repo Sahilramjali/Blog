@@ -1,15 +1,18 @@
 import axios from "axios";
 import {  useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { GET_SINGLE_BLOG_API_URL,IMG_URL } from "../constants/constant";
+import { useNavigate, useParams } from "react-router-dom";
+import { GET_SINGLE_BLOG_API_URL,IMG_URL,DELETE_BLOG_BY_ID } from "../constants/constant";
+import {toast} from 'react-hot-toast';
 
-import Cookies from 'js-cookie';
+
 
  const Content = () => {
+   const naviagte=useNavigate();
     const[blogInfo,setBlogInfo]=useState('');
     const {id}=useParams();
-    const userId=Cookies.get('userId');
+    const userId=localStorage.getItem('userId');
     useEffect(()=>{
+    
         axios.get(GET_SINGLE_BLOG_API_URL+id,).then(res=>{
             setBlogInfo(res.data);
 
@@ -17,8 +20,21 @@ import Cookies from 'js-cookie';
             console.log(err);
         })
     },[id])
-    console.log(blogInfo.author
-      )
+    
+    const handleDelete=()=>{
+      axios.delete(DELETE_BLOG_BY_ID+id).then(res=>{
+        if(res.data.error){
+          toast.error(res.data.error);
+        }else{
+          toast.success("Deleted successfully");
+          naviagte('/');
+        }
+        
+      }).catch(err=>{
+        console.log(err);
+        toast.error('Internal Server Error');
+      })
+    }
  
   return (
     <section className="content">
@@ -30,10 +46,10 @@ import Cookies from 'js-cookie';
       <h2>{blogInfo.title}</h2>
       
       <main className="main-content" dangerouslySetInnerHTML={{__html:blogInfo.content}}/>
-       {userId===blogInfo.author?<div className="buttons">
-          <button className="update">Update</button>
+       {userId===blogInfo.author&&<div className="buttons">
+          <button onClick={handleDelete} className="update">Update</button>
           <button className="delete">Delete</button>
-       </div>:null}
+       </div>}
      
     </section>
   )

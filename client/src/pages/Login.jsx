@@ -7,6 +7,7 @@ import { ValidateEmail } from "../utils/validation";
 import {toast} from 'react-hot-toast'
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../hooks/userInfo";
+import Cookies from "js-cookie";
 const InitialData = {
   email: "",
   password: "",
@@ -41,6 +42,7 @@ const Login = () => {
           // localStorage.setItem('userData', result.data.result);
           // setUserData(result.data.result);
           handleLogin();
+          localStorage.setItem('userId',Cookies.get('userId'));
           // console.log(userData);
           toast.success("login successfully")
           navigate("/")

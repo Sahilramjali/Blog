@@ -1,12 +1,13 @@
 
 const express=require('express');
-
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const {mongoose}=require('mongoose');
 const app=express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.use('/api',require("./routes/authRoute"));
 app.use('/api/blog',require("./routes/blog"));
 app.use('/uploads',express.static('uploads'));

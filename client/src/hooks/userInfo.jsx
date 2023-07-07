@@ -6,6 +6,7 @@ export const UserContext=createContext();
 export const UserProvider=({children})=>{
     const [isLogin,setisLogin]=useState(Cookies.get('token')?true:false);
     // const [user,setUserData]=useState({});
+    const userId=Cookies.get('userId')
    const handleLogin=()=>{
     setisLogin(true);
    }
@@ -16,10 +17,12 @@ export const UserProvider=({children})=>{
         // localStorage.removeItem('userData');
 
         Cookies.remove('token');
+        Cookies.remove('userId');
+        localStorage.clear();
         setisLogin(false);
       };
       return(
-        <UserContext.Provider value={{isLogin,logout,handleLogin}}>
+        <UserContext.Provider value={{isLogin,logout,handleLogin,userId}}>
             {children}
         </UserContext.Provider>
       )

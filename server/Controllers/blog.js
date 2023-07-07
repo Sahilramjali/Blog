@@ -2,6 +2,7 @@
 const fs = require('fs');
 const blogModel = require("../Models/blog")
 const jwt=require('jsonwebtoken')
+
 const blogPost = async (req, res) => {
     try {
         const { title, summary, content } = req.body;
@@ -13,7 +14,7 @@ const blogPost = async (req, res) => {
         const newPath = path + '.' + extension
         fs.renameSync(path, newPath);
        
-        console.log(req.headers.authorization);
+        
        const token= jwt.verify(req.headers.authorization.split(' ')[1],process.env.JWT_SECERET_KEY)
 
         const data = new blogModel({
@@ -71,8 +72,36 @@ const getSingleBlog=async(req,res)=>{
     }
 }
 
+const deletBlog=async(req,res)=>{
+    try{
+        const token= jwt.verify(req.headers.authorization.split(' ')[1],process.env.JWT_SECERET_KEY);
+        const userId=req.cookies[1];
+        const params=req.paams.id;
+        console.log(userId);
+        if(params&&token.id===userId){
+            const data=await blogModel.findOne({"_id":params})
+            if(data.author._id===userId){
+              blogModel.deleteOne({_id:params})
+              res.json("item deleted")
+            }else{
+                res.json({error:"delete operation cannot be performed by you"})
+            }
+        }else{
+            res.json({error:"You cannot delete"});
+        }
+
+    }catch(err){
+        console.log("error occurs in server");
+        console.log(err);
+        res.status(500).json({
+            error: "Internal Server error"
+        })
+    }
+}
+
 module.exports = {
     blogPost,
     getBlog,
-    getSingleBlog
+    getSingleBlog,
+    deletBlog
 }
