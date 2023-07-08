@@ -56,6 +56,20 @@ const EditBlog = () => {
 
 
     }
+
+    const handleFileChange=(e)=>{
+      const tempFile=e.target.files[0];
+      if(tempFile){
+        const reader=new FileReader();
+        reader.readAsDataURL(tempFile);
+        reader.onloadend(()=>{
+          setBlogData(prev=>({
+            ...prev,
+           url:reader.result
+          }));
+        })
+      }
+    }
     const handleChange=(e)=>{
       setBlogData(prev=>({
         ...prev,
@@ -88,13 +102,7 @@ const EditBlog = () => {
           <input
             type="file"
             name="file"
-            onChange={(e) => {
-              setBlogData(prev=>({
-                ...prev,
-                image:e.target.files?.[0]
-              }));
-
-            }}
+            onChange={handleFileChange}
           />
         </div>
         <div className="">

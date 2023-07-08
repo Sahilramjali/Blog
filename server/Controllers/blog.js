@@ -1,19 +1,29 @@
 
 const fs = require('fs');
 const blogModel = require("../Models/blog")
-const jwt=require('jsonwebtoken')
-
+const jwt=require('jsonwebtoken');
+const uploadImage = require('../util/generateUrl');
+const { v4: uuidv4 } = require('uuid');
 const blogPost = async (req, res) => {
     try {
-        const { title, summary, content } = req.body;
+        const { title, summary, content,file } = req.body;
        
 
-        const { originalname, path } = req.file;
-        const parts = originalname.split('.');
-        const extension = parts[parts.length - 1];
-        const newPath = path + '.' + extension
-        fs.renameSync(path, newPath);
+        // const { originalname, path } = req.file;
+        // console.log(req.file);
+        // const parts = originalname.split('.');
+        // const extension = parts[parts.length - 1];
+        // const newPath = path + '.' + extension
+        // fs.renameSync(path, newPath);
        
+        const imageId=uuidv4().split('-')[0];
+        console.log("image Id "+imageId);
+        const imageUrl=await uploadImage(file,imageId);
+        if(typeof imageUrl !=='string'){
+            return res.status(500).json({
+                error: "Internal Server error"
+            })
+        }
         
        const token= jwt.verify(req.headers.authorization.split(' ')[1],process.env.JWT_SECERET_KEY)
 
@@ -21,7 +31,7 @@ const blogPost = async (req, res) => {
             title,
             summary,
             content,
-            image: newPath,
+            url: imageUrl,
             author:token._id,
         });
         const result = await data.save();

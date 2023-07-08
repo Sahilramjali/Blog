@@ -1,7 +1,7 @@
 import axios from "axios";
 import {  useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { GET_SINGLE_BLOG_API_URL,IMG_URL,DELETE_BLOG_BY_ID } from "../constants/constant";
+import { GET_SINGLE_BLOG_API_URL,DELETE_BLOG_BY_ID } from "../constants/constant";
 import {toast} from 'react-hot-toast';
 
 import Cookies from "js-cookie";
@@ -69,7 +69,7 @@ import Cookies from "js-cookie";
           </p>
       <div className="content-image">
         <img
-        src={IMG_URL+blogInfo.image}
+        src={blogInfo.url}
         />
       </div>
      

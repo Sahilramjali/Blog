@@ -24,6 +24,17 @@ const CreateBlog = () => {
       [e.target.name]: e.target.value,
     }));
   };
+  const handleFileChange=(e)=>{
+    const tempFile=e.target.files[0];
+    if(tempFile){
+      const reader=new FileReader();
+      reader.readAsDataURL(tempFile);
+      reader.onloadend=()=>{
+        console.log(reader.result);
+        setFile(reader.result);
+      }
+    }
+  }
 
   const submitCreatePost = (e) => {
     const { title, summary } = Data;
@@ -39,7 +50,7 @@ const CreateBlog = () => {
       }, {
         withCredentials: true,
         headers: {
-          'Content-Type': 'multipart/form-data',
+        
            'Authorization':`bearer ${Cookies.get('token')}`
         },
       }).then(res => {
@@ -85,10 +96,7 @@ const CreateBlog = () => {
           <input
             type="file"
             name="file"
-            onChange={(e) => {
-              setFile(e.target.files[0])
-
-            }}
+            onChange={handleFileChange}
           />
         </div>
         <div className="">

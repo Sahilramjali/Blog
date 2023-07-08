@@ -1,9 +1,9 @@
 
 import{format} from 'date-fns';
-import { IMG_URL } from '../constants/constant';
+
 import { Link } from 'react-router-dom';
-const BlogClick = ({ _id,title, content, summary,image,createdAt,author,...rest }) => {
-    const imgSrc=IMG_URL+image;
+const BlogClick = ({ _id,title, content, summary,url,createdAt,author }) => {
+  
     
   return (
     <div className="wrapper"> 
@@ -11,7 +11,7 @@ const BlogClick = ({ _id,title, content, summary,image,createdAt,author,...rest 
     <div className="post">
         <div className="image">
           <img
-            src={imgSrc}
+            src={url}
             alt={title}
           />
         </div>

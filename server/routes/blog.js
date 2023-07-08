@@ -13,8 +13,8 @@ router.use(
         origin:"http://localhost:5173",
     })
 );
-
-router.post('/post',upload.single('file'),blogPost);
+// upload.single('file')
+router.post('/post',blogPost);
 router.get('/getblog',getBlog);
 router.get('/getblog/:id',getSingleBlog);
 router.delete('/deleteblog/:id',deleteBlog);
