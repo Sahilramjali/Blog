@@ -4,7 +4,7 @@ const router=express.Router();
 const multer  = require('multer');
 const upload = multer({ dest: 'uploads/' })
 const cors=require("cors");
-const {blogPost,getBlog,getSingleBlog,deletBlog}=require("../Controllers/blog");
+const {blogPost,getBlog,getSingleBlog,deleteBlog,updateBlog}=require("../Controllers/blog");
 
 //middleware
 router.use(
@@ -15,7 +15,8 @@ router.use(
 );
 
 router.post('/post',upload.single('file'),blogPost);
-router.get('/getBlog',getBlog);
-router.get('/getBlog/:id',getSingleBlog);
-router.delete('/deleteBlog/:id',deletBlog);
+router.get('/getblog',getBlog);
+router.get('/getblog/:id',getSingleBlog);
+router.delete('/deleteblog/:id',deleteBlog);
+router.put('/updateblog/:id',upload.single('file'),updateBlog)
 module.exports=router;

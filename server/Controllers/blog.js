@@ -42,7 +42,7 @@ const getBlog = async(req, res) => {
     try {
          const data=await blogModel.find().populate('author', ['username']).sort({createdAt:-1}).limit(20);
            
-         res.json({data});
+         res.json({data});  
     } catch (err) {
         console.log("error occurs in server");
         res.status(500).json({
@@ -55,8 +55,8 @@ const getSingleBlog=async(req,res)=>{
         const id=req.params.id;
         console.log(id);
         if(id){
-            const data=await blogModel.findOne({"_id":id})
-            // console.log(data);
+            const data=await blogModel.findOne({"_id":id}).populate('author',['username','_id']);
+            console.log(data);
             res.json(data);
         }else{
             res.json({error:"Invalid id"})
@@ -72,7 +72,7 @@ const getSingleBlog=async(req,res)=>{
     }
 }
 
-const deletBlog=async(req,res)=>{
+const deleteBlog=async(req,res)=>{
     try{
         const token= jwt.verify(req.headers.authorization.split(' ')[1],process.env.JWT_SECERET_KEY);
         const {userId}=req.cookies;
@@ -105,9 +105,59 @@ const deletBlog=async(req,res)=>{
     }
 }
 
+const updateBlog=async(req,res)=>{
+    try{
+        const token= jwt.verify(req.headers.authorization.split(' ')[1],process.env.JWT_SECERET_KEY);
+        const {userId}=req.cookies;
+        const params=req.params.id;
+        let newPath;
+        const { title, summary, content } = req.body;
+
+        if(req.file){
+            const { originalname, path } = req.file;
+            const parts = originalname.split('.');
+            const extension = parts[parts.length - 1];
+             newPath = path + '.' + extension
+            fs.renameSync(path, newPath);
+           
+        }
+
+        if(params&&token._id===userId){
+            const data=await blogModel.findOne({"_id":params}).populate('author')
+            console.log(data.author._id.toString());
+
+            if(data.author._id.toString()===userId){
+               
+                blogModel.findOneAndUpdate({_id:params},{
+                    title,
+                    summary,
+                    content,
+                    image:newPath?newPath:data.image
+                }).then(()=>{
+                    res.json("item updated")
+              }).catch(err=>{
+                res.json(err)
+              })
+              
+            }else{
+                res.json({error:"update operation cannot be performed by you"})
+            }
+        }else{
+            res.json({error:"You cannot update"});
+        }
+    }catch(err){
+        console.log("error occurs in server");
+        console.log(err);
+        res.status(500).json({
+            error: "Internal Server error"
+        })
+    }
+}
+
 module.exports = {
     blogPost,
     getBlog,
     getSingleBlog,
-    deletBlog
+    deleteBlog,
+    updateBlog
 }
