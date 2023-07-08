@@ -7,6 +7,7 @@ export const POST_API_URL=GLOBAL_URL+"blog/post";
 export const GET_BLOG_API_URL=GLOBAL_URL+"blog/getblog";
 export const GET_SINGLE_BLOG_API_URL=GLOBAL_URL+"blog/getblog/"
 export const DELETE_BLOG_BY_ID=GLOBAL_URL+"blog/deleteblog/"
+export const UPDATE_BLOG_BY_ID=GLOBAL_URL+"blog/updateblog/"
 export const modules = {
     toolbar: [
       [{ 'header': [1, 2, false] }],

@@ -111,8 +111,10 @@ const updateBlog=async(req,res)=>{
         const {userId}=req.cookies;
         const params=req.params.id;
         let newPath;
-        const { title, summary, content } = req.body;
-
+        const { title, summary, content } = req.body.blogData;
+        console.log(title);
+        console.log(summary);
+        console.log(content);
         if(req.file){
             const { originalname, path } = req.file;
             const parts = originalname.split('.');
@@ -133,8 +135,9 @@ const updateBlog=async(req,res)=>{
                     summary,
                     content,
                     image:newPath?newPath:data.image
-                }).then(()=>{
-                    res.json("item updated")
+                }).then((item)=>{
+                    res.json({status:"item updated",...item})
+                    
               }).catch(err=>{
                 res.json(err)
               })

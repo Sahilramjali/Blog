@@ -18,7 +18,7 @@ export const UserProvider=({children})=>{
 
         Cookies.remove('token');
         Cookies.remove('userId');
-        localStorage.clear();
+        
         setisLogin(false);
       };
       return(

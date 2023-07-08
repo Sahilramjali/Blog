@@ -10,19 +10,37 @@ import Cookies from "js-cookie";
    const naviagte=useNavigate();
     const[blogInfo,setBlogInfo]=useState('');
     const {id}=useParams();
-    const userId=localStorage.getItem('userId');
+    
+    const userId=Cookies.get('userId');
     useEffect(()=>{
-    
-        axios.get(GET_SINGLE_BLOG_API_URL+id,).then(res=>{
-            setBlogInfo(res.data);
-
-        }).catch(err=>{
-            console.log(err);
-        })
+      const source = axios.CancelToken.source();
+      const fetchdata = async () => {
+        try {
+          const response = await axios.get(GET_SINGLE_BLOG_API_URL+id, {
+            cancelToken: source.token,
+          });
+  
+          setBlogInfo(response.data);
+        } catch (errr) {
+          console.log(errr);
+        }
+      };
+      fetchdata();
+      return () => {
+        source.cancel("get request rebert");
+      };
+        
     },[id])
+    const handleUpdate=()=>{
+      if(userId===blogInfo?.author?._id){
+        naviagte(`/edit/${id}`)
+      }else{
+        toast.error("You cannot edit this post");
+      }
     
+    }
     const handleDelete=()=>{
-      console.log(DELETE_BLOG_BY_ID+id);
+      
       axios.delete(DELETE_BLOG_BY_ID+id, {
         withCredentials: true,
         headers: {
@@ -44,16 +62,21 @@ import Cookies from "js-cookie";
  
   return (
     <section className="content">
+       <h2>{blogInfo.title}</h2>
+       <p className="info">
+            <span className="author">{blogInfo?.author?.username}</span>
+            {/* {format(new Date(blogInfo.createdAt),'MMM d, yyyy HH:mm')} */}
+          </p>
       <div className="content-image">
         <img
         src={IMG_URL+blogInfo.image}
         />
       </div>
-      <h2>{blogInfo.title}</h2>
+     
       
       <main className="main-content" dangerouslySetInnerHTML={{__html:blogInfo.content}}/>
-       {userId===blogInfo.author&&<div className="buttons">
-          <button  className="update">Update</button>
+       {userId===blogInfo?.author?._id &&<div className="buttons">
+          <button onClick={handleUpdate} className="update">Update</button>
           <button onClick={handleDelete}className="delete">Delete</button>
        </div>}
      

@@ -9,7 +9,7 @@ import { useContext } from 'react';
 import { UserContext } from './hooks/userInfo';
 import CreateBlog from './pages/CreateBlog';
 import  Content  from './pages/Content';
-
+import EditBlog from './pages/EditBlog';
 
 
 function App() {
@@ -26,6 +26,7 @@ const {isLogin}=useContext(UserContext);
           <Route path="register" element={isLogin?<Navigate to='/'/>:<Register/>} />
           <Route path="create" element={isLogin?<CreateBlog/>:<Navigate to='/login'/>}/>
           <Route path="post/:id" element={<Content/>}/>
+          <Route path="edit/:id" element={isLogin?<EditBlog/>:<Navigate to='/login'/>}/>
         </Route>
       </Routes>
     
