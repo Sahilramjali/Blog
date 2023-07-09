@@ -6,7 +6,8 @@ const { v4: uuidv4 } = require("uuid");
 const blogPost = async (req, res) => {
   try {
     const { title, summary, content, file } = req.body;
-
+    const contentLength = req.headers['content-length'];
+    console.log('Request entity size:', contentLength);
     // const { originalname, path } = req.file;
     // console.log(req.file);
     // const parts = originalname.split('.');
@@ -49,14 +50,20 @@ const blogPost = async (req, res) => {
 
 const getBlog = async (req, res) => {
   try {
+    const page=parseInt(req.query.page)||1;
+    const limit=parseInt(req.query.limit)||5;
+    const skip=(page-1)*limit;
+    const totalData=await blogModel.find();
+    
     const data = await blogModel
       .find()
       .populate("author", ["username"])
-      .sort({ createdAt: -1 })
-      .limit(20);
-
-    res.json({ data });
+      .sort({ createdAt: -1 }).skip(skip).limit(limit);
+      
+    const  totalPages= Math.ceil(totalData.length / limit);
+    res.json({ data,totalPages });
   } catch (err) {
+    console.log(err);
     console.log("error occurs in server");
     res.status(500).json({
       error: "Internal Server error",

@@ -1,40 +1,86 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import BlogClick from "../components/BlogClick";
 import axios from "axios";
 import { GET_BLOG_API_URL } from "../constants/constant";
-
+import Loading from "../components/Loading";
 const HomePage = () => {
   const [data, setData] = useState([]);
+  const [loading,setLoading]=useState(false);
+  const [page,setPage]=useState(1);
+  const [totalPage,setTotalPage]=useState(1);
+  // const[tempData,setTempData]=useState(0);
   useEffect(() => {
     const source = axios.CancelToken.source();
-    const fetchdata = async () => {
+    // const fetchdata = async () => {
+    //   try {
+    //     const response = await axios.get(GET_BLOG_API_URL, {
+    //       cancelToken: source.token,
+    //     });
+
+    //     setData(response.data.data);
+    //   } catch (errr) {
+    //     console.log(errr);
+    //   }
+    // };
+    const fetchdata=async(source)=>{
       try {
-        const response = await axios.get(GET_BLOG_API_URL, {
+        const response = await axios.get(`${GET_BLOG_API_URL}?limit=2&page=${page}` ,{
           cancelToken: source.token,
         });
-
-        setData(response.data.data);
+        console.log(response.data.data);
+        
+        setData(prev=>[...prev,...response.data.data]);
+        setTotalPage(response.data.totalPages);
+        // setTempData(response.data.data.length);
+        setLoading(false);
       } catch (errr) {
         console.log(errr);
       }
-    };
-    fetchdata();
+    }
+    fetchdata(source);
     return () => {
       source.cancel("get request rebert");
     };
-  }, []);
-  
+  }, [page]);
+
+  const handleInfiniteScroll =useCallback( async () => {
+    try {
+      // console.log(document.documentElement.scrollHeight);
+      if (window.innerHeight + document.documentElement.scrollTop +1 >= document.documentElement.scrollHeight){
+    
+          setLoading(true);
+          if(totalPage!==page){
+            setPage(prev=>prev+1);
+          }else{
+            setPage(prev=>prev)
+            setLoading(false);
+          }
+         
+        
+        
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  },[totalPage,page])
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleInfiniteScroll)
+    return () => window.removeEventListener("scroll", handleInfiniteScroll);
+
+  }, [handleInfiniteScroll])
   return (
     <section className="home-wrapper">
-    {data.map((blog, index) => (
+      {data.map((blog, index) => (
         <BlogClick
           key={blog._id}
           {...blog}
         />
       ))}
+      {loading? <Loading />:null}
     </section>
-      
-    
+
+
   );
 };
 
