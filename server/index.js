@@ -28,4 +28,4 @@ mongoose.connect(process.env.MONGO_URL).then(()=>{
 app.listen(4000,()=>{
     console.log("sever connected to 4000 port")
 })
-// module.exports = app;
+module.exports = app;
