@@ -3,6 +3,7 @@ import BlogClick from "../components/BlogClick";
 import axios from "axios";
 import { GET_BLOG_API_URL } from "../constants/constant";
 import Loading from "../components/Loading";
+import BlogComponent from './../components/BlogComponent';
 const HomePage = () => {
   const [data, setData] = useState([]);
   const [loading,setLoading]=useState(false);
@@ -10,7 +11,7 @@ const HomePage = () => {
   const [totalPage,setTotalPage]=useState(1);
   // const[tempData,setTempData]=useState(0);
   useEffect(() => {
-    const source = axios.CancelToken.source();
+    // const source = axios.CancelToken.source();
     // const fetchdata = async () => {
     //   try {
     //     const response = await axios.get(GET_BLOG_API_URL, {
@@ -22,11 +23,13 @@ const HomePage = () => {
     //     console.log(errr);
     //   }
     // };
-    const fetchdata=async(source)=>{
+    const fetchdata=async()=>{
       try {
-        const response = await axios.get(`${GET_BLOG_API_URL}?limit=2&page=${page}` ,{
-          cancelToken: source.token,
-        });
+        const response = await axios.get(`${GET_BLOG_API_URL}?limit=2&page=${page}` 
+        // ,{
+        //   // cancelToken: source.token,
+        // }
+        );
         console.log(response.data.data);
         
         setData(prev=>[...prev,...response.data.data]);
@@ -37,9 +40,10 @@ const HomePage = () => {
         console.log(errr);
       }
     }
-    fetchdata(source);
+    fetchdata();
     return () => {
-      source.cancel("get request rebert");
+      console.log("finished");
+      // source.cancel("get request rebert");
     };
   }, [page]);
 
@@ -49,7 +53,7 @@ const HomePage = () => {
       if (window.innerHeight + document.documentElement.scrollTop +1 >= document.documentElement.scrollHeight){
     
           setLoading(true);
-          if(totalPage!==page){
+          if(totalPage!==page &&page<totalPage){
             setPage(prev=>prev+1);
           }else{
             setPage(prev=>prev)
@@ -71,12 +75,8 @@ const HomePage = () => {
   }, [handleInfiniteScroll])
   return (
     <section className="home-wrapper">
-      {data.map((blog, index) => (
-        <BlogClick
-          key={blog._id}
-          {...blog}
-        />
-      ))}
+      
+      <BlogComponent items={data}/>
       {loading? <Loading />:null}
     </section>
 
