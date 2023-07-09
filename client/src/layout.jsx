@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom"
 
 import Header from "./components/header"
-import  Toaster  from "react-hot-toast"
+import  {Toaster}  from "react-hot-toast"
 // import { UserProvider } from "./hooks/userInfo"
 
 
