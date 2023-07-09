@@ -4,7 +4,8 @@ const router=express.Router();
 router.use(
     cors({
         credentials:true,
-        origin:process.env.FRONTENT_WEBSITE,
+        origin:"http://localhost:5173",
+        // origin:process.env.FRONTENT_WEBSITE,
     })
 );
 router.use('/auth',require('./auth.route.js'));
