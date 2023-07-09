@@ -10,7 +10,7 @@ const {blogPost,getBlog,getSingleBlog,deleteBlog,updateBlog}=require("../Control
 router.use(
     cors({
         credentials:true,
-        origin:"http://localhost:5173",
+        origin:process.env.FRONTENT_WEBSITE,
     })
 );
 // upload.single('file')
