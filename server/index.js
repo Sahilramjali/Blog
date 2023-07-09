@@ -6,6 +6,7 @@ const {mongoose}=require('mongoose');
 const app=express();
 const cloudinary = require('cloudinary').v2;
 const bodyParser=require('body-parser');
+const cors=require("cors");
 app.use(express.json());
 
 
@@ -18,6 +19,13 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET,
   });
+
+  router.use(
+    cors({
+        credentials:true,
+        origin:process.env.FRONTENT_WEBSITE,
+    })
+);
 app.use('/api',require("./routes/index"));
 // app.use('/uploads',express.static('uploads'));
 
