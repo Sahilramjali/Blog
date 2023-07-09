@@ -9,7 +9,8 @@ const {signup, login}=require("../Controllers/authController");
 router.use(
     cors({
         credentials:true,
-        origin:"http://localhost:5173",
+        // origin:"http://localhost:5173",
+        origin:process.env.FRONTENT_WEBSITE,
     })
 );
 router.post('/signup',signup);
