@@ -15,10 +15,8 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET,
   });
-
-app.use('/api',require("./routes/authRoute"));
-app.use('/api/blog',require("./routes/blog"));
-app.use('/uploads',express.static('uploads'));
+app.use('/api',require("./routes/index"));
+// app.use('/uploads',express.static('uploads'));
 
 //connect mongodb
 mongoose.connect(process.env.MONGO_URL).then(()=>{
@@ -30,4 +28,3 @@ mongoose.connect(process.env.MONGO_URL).then(()=>{
 app.listen(4000,()=>{
     console.log("sever connected to 4000 port")
 })
-module.exports=app;
