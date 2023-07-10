@@ -4,14 +4,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import { GET_SINGLE_BLOG_API_URL,DELETE_BLOG_BY_ID } from "../constants/constant";
 import {toast} from 'react-hot-toast';
 
-import Cookies from "js-cookie";
+
+import useCookeiProvider from "../hooks/useCookeiProvider";
 
  const Content = () => {
    const naviagte=useNavigate();
     const[blogInfo,setBlogInfo]=useState('');
     const {id}=useParams();
     
-    const userId=Cookies.get('userId');
+    const [user]=useCookeiProvider();
     useEffect(()=>{
       const source = axios.CancelToken.source();
       const fetchdata = async () => {
@@ -32,7 +33,7 @@ import Cookies from "js-cookie";
         
     },[id])
     const handleUpdate=()=>{
-      if(userId===blogInfo?.author?._id){
+      if(user?.id===blogInfo?.author?._id){
         naviagte(`/edit/${id}`)
       }else{
         toast.error("You cannot edit this post");
@@ -45,7 +46,7 @@ import Cookies from "js-cookie";
         withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data',
-           'Authorization':`bearer ${Cookies.get('token')}`
+           'Authorization':`bearer ${user.token}`
         }}).then(res=>{
         if(res.data.error){
           toast.error(res.data.error);
@@ -75,7 +76,7 @@ import Cookies from "js-cookie";
      
       
       <main className="main-content" dangerouslySetInnerHTML={{__html:blogInfo.content}}/>
-       {userId===blogInfo?.author?._id &&<div className="buttons">
+       {user?.id===blogInfo?.author?._id &&<div className="buttons">
           <button onClick={handleUpdate} className="update">Update</button>
           <button onClick={handleDelete}className="delete">Delete</button>
        </div>}

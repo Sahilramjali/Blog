@@ -1,29 +1,26 @@
-import { createContext,useState } from "react";
+import { createContext, useState } from "react";
 
-import Cookies from 'js-cookie';
-export const UserContext=createContext();
+import Cookies from "js-cookie";
+export const UserContext = createContext();
 
-export const UserProvider=({children})=>{
-    const [isLogin,setisLogin]=useState(Cookies.get('token')?true:false);
-    // const [user,setUserData]=useState({});
-    const userId=Cookies.get('userId')
-   const handleLogin=()=>{
+export const UserProvider = ({ children }) => {
+  const userCookie = Cookies.get("user");
+  const user=userCookie?JSON.parse(userCookie):null;
+  const [isLogin, setisLogin] = useState(user?.token ? true : false);
+  console.log(isLogin);
+
+  const handleLogin = () => {
     setisLogin(true);
-   }
-  //  console.log(localStorage.getItem('userData'));
-  // console.log(userData);
-      const logout = () => {
-        // Remove the token from the cookie
-        // localStorage.removeItem('userData');
+  };
 
-        Cookies.remove('token');
-        Cookies.remove('userId');
-        
-        setisLogin(false);
-      };
-      return(
-        <UserContext.Provider value={{isLogin,logout,handleLogin,userId}}>
-            {children}
-        </UserContext.Provider>
-      )
-}
+  const logout = () => {
+    setisLogin(false);
+    Cookies.remove('user');
+    Cookies.remove('token');
+  };
+  return (
+    <UserContext.Provider value={{ isLogin, logout, handleLogin, user }}>
+      {children}
+    </UserContext.Provider>
+  );
+};

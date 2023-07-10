@@ -7,6 +7,9 @@ import { ValidateEmail } from "../utils/validation";
 import {toast} from 'react-hot-toast'
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../hooks/userInfo";
+import {useCookies} from 'react-cookie';
+import Cookies from "js-cookie";
+
 
 const InitialData = {
   email: "",
@@ -15,7 +18,8 @@ const InitialData = {
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [Data, setData] = useState(InitialData);
-  const {handleLogin}=useContext(UserContext)
+  const {handleLogin}=useContext(UserContext);
+  const [cookie,setCookie]=useCookies(['user']);
   const navigate=useNavigate();
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -42,6 +46,17 @@ const Login = () => {
           // localStorage.setItem('userData', result.data.result);
           // setUserData(result.data.result);
           handleLogin();
+          const token=Cookies.get('token');
+          console.log(token);
+          console.log(result.data);
+          setCookie("user",{
+            token:token,
+             id:result.data?.result?._id,
+             username:result.data?.result?.username
+          },{
+            maxAge:60*60*24
+          });
+          
           // localStorage.setItem('userId',Cookies.get('userId'));
           // console.log(userData);
           toast.success("login successfully")

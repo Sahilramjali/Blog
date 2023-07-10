@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import BlogClick from "../components/BlogClick";
+
 import axios from "axios";
 import { GET_BLOG_API_URL } from "../constants/constant";
 import Loading from "../components/Loading";

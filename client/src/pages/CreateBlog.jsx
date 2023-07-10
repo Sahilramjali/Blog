@@ -6,6 +6,7 @@ import axios from 'axios';
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import useCookeiProvider from "../hooks/useCookeiProvider";
 const InitialData = {
   title: "",
   summary: "",
@@ -17,7 +18,8 @@ const CreateBlog = () => {
   const [Data, setData] = useState(InitialData);
   const [content, setContent] = useState('');
   const [file, setFile] = useState('');
-
+  const [user]=useCookeiProvider();
+  console.log("create blog page "+user.token);
   const handleChange = (e) => {
     setData((prev) => ({
       ...prev,
@@ -51,7 +53,7 @@ const CreateBlog = () => {
         withCredentials: true,
         headers: {
         
-           'Authorization':`bearer ${Cookies.get('token')}`
+           'Authorization':`bearer ${user.token}`
         },
       }).then(res => {
         if (res.data.error) {

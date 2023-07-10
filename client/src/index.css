@@ -13,7 +13,10 @@
   --title-size: 2.5rem;
   --text-small-size: 2rem;
 }
-
+::-ms-reveal 
+{
+    display: none;
+}
 body {
   
   margin: 0;

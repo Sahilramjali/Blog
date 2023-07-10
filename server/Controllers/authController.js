@@ -49,12 +49,8 @@ const login=async(req,res)=>{
         const result=user.toObject();
         delete result.password;
         const token=jwt.sign(result,process.env.JWT_SECERET_KEY);
-      res.cookie('token',token,{
-        maxAge: 24*60*60 * 1000,
-      });
-      res.cookie('userId',user.id,{
-        maxAge: 24*60*60 * 1000,
-      });
+      res.cookie('token',token);
+      
       
       res.json({Status: "Success",result:result});
 

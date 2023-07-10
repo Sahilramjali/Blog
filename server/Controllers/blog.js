@@ -28,7 +28,8 @@ const blogPost = async (req, res) => {
       req.headers.authorization.split(" ")[1],
       process.env.JWT_SECERET_KEY
     );
-
+  console.log("create post token "+ req.headers.authorization.split(" ")[1]);
+  console.log('Token user id :'+token._id)
     const data = new blogModel({
       title,
       summary,

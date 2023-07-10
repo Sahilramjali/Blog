@@ -3,10 +3,10 @@ import BlogClick from './BlogClick';
 
 const BlogComponent = ({items}) => {
   return (
-    <div style={{width:"100%"}}>
+    <div className='blogcomp-div'>
     {items.map((blog, index) => (
         <BlogClick
-          key={blog._id}
+          key={blog._id+index}
           {...blog}
         />
       ))}
