@@ -6,11 +6,13 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { toast } from "react-hot-toast";
 import Cookies from "js-cookie"; 
+import useCookeiProvider from "../hooks/useCookeiProvider";
 
 const EditBlog = () => {
   const navigate=useNavigate();
     const[blogData,setBlogData]=useState({});
     const {id}=useParams();
+    const [user]=useCookeiProvider();
     useEffect(()=>{
       const source = axios.CancelToken.source();
       const fetchblogData = async () => {
@@ -37,7 +39,7 @@ const EditBlog = () => {
         withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data',
-           'Authorization':`bearer ${Cookies.get('token')}`
+           'Authorization':`bearer ${user.token}`
         },
       }).then(res => {
         if (res.data.error) {

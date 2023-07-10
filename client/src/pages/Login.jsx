@@ -50,7 +50,7 @@ const Login = () => {
           console.log(token);
           console.log(result.data);
           setCookie("user",{
-            token:token,
+             token:result.data?.token,
              id:result.data?.result?._id,
              username:result.data?.result?.username
           },{

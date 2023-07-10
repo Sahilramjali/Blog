@@ -52,7 +52,7 @@ const login=async(req,res)=>{
       res.cookie('token',token);
       
       
-      res.json({Status: "Success",result:result});
+      res.json({Status: "Success",result:result,token:token});
 
       }else{
         res.json({error:"Email or passwor is wrong"})
