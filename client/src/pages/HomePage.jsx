@@ -25,7 +25,7 @@ const HomePage = () => {
     // };
     const fetchdata=async()=>{
       try {
-        const response = await axios.get(`${GET_BLOG_API_URL}?limit=2&page=${page}` 
+        const response = await axios.get(`${GET_BLOG_API_URL}?limit=3&page=${page}` 
         // ,{
         //   // cancelToken: source.token,
         // }

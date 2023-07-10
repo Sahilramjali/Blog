@@ -3,7 +3,7 @@ import {  useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { GET_SINGLE_BLOG_API_URL,DELETE_BLOG_BY_ID } from "../constants/constant";
 import {toast} from 'react-hot-toast';
-
+import placeholder from '../../public/image/image_placeholder.gif'
 
 import useCookeiProvider from "../hooks/useCookeiProvider";
 
