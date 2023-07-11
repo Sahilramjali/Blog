@@ -24,7 +24,7 @@ body {
   display: flex;
   flex-direction: column;
   
-  
+  background-color: #ECEFF2;
   flex-wrap: wrap;
   
   
@@ -35,7 +35,8 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
+ 
 }
 
 main {
@@ -43,15 +44,19 @@ main {
   max-width: 1280px;
   width: 100%;
   height: 100vh;
-  padding-top: var(--padding-main);
+  
   
  
 }
 
 header {
-  background-color: #006989;
+ 
   margin-bottom: 1.5rem;
   width: 100%;
+ 
+  padding-top: var(--padding-main);
+  padding-bottom: var(--padding-main);
+ 
  
 }
 
@@ -114,6 +119,9 @@ header {
   position: relative;
   margin-bottom: 2.5rem;
   /* background-color: #006989; */
+  /* border: 1px solid black; */
+
+  
  
 }
 
