@@ -38,6 +38,7 @@ const EditBlog = () => {
       }, {
         withCredentials: true,
         headers: {
+          
           'Content-Type': 'multipart/form-data',
            'Authorization':`bearer ${user.token}`
         },

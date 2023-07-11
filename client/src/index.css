@@ -314,11 +314,15 @@ h3 {
   padding: 0;
   width: 100%;
   height: auto;
-  
+  padding-top: 1rem;
+  font-size: 1rem;
   /* display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center ; */
+}
+.content .main-content h1{
+  font-size: 2rem;
 }
 .content .main-content img {
   height: 450px;

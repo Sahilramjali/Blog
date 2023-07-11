@@ -41,7 +41,7 @@ const blogPost = async (req, res) => {
 
     return res.json(result);
   } catch (err) {
-    console.log(err);
+    console.log("post size big "+err);
     console.log("error occurs in server");
     res.status(500).json({
       error: "Internal Server error",
@@ -99,14 +99,15 @@ const deleteBlog = async (req, res) => {
       req.headers.authorization.split(" ")[1],
       process.env.JWT_SECERET_KEY
     );
-    const { userId } = req.cookies;
+  
     const params = req.params.id;
-    console.log(userId);
-    if (params && token._id === userId) {
-      const data = await blogModel.findOne({ _id: params }).populate("author");
-      console.log(data.author._id.toString());
+  
+    const data = await blogModel.findOne({ _id: params }).populate("author");
+    console.log(data.author._id.toString());
+    if (params && token._id === data.author._id.toString()) {
+     
 
-      if (data.author._id.toString() === userId) {
+      
         blogModel
           .deleteOne({ _id: params })
           .then(() => {
@@ -115,9 +116,7 @@ const deleteBlog = async (req, res) => {
           .catch((err) => {
             res.json(err);
           });
-      } else {
-        res.json({ error: "delete operation cannot be performed by you" });
-      }
+      
     } else {
       res.json({ error: "You cannot delete" });
     }
@@ -136,8 +135,9 @@ const updateBlog = async (req, res) => {
       req.headers.authorization.split(" ")[1],
       process.env.JWT_SECERET_KEY
     );
-    const { userId } = req.cookies;
+   
     const params = req.params.id;
+   
     let imageUrl;
     const { title, summary, content, file } = req.body.blogData;
   
@@ -151,12 +151,13 @@ const updateBlog = async (req, res) => {
         });
       }
     }
-
-    if (params && token._id === userId) {
-      const data = await blogModel.findOne({ _id: params }).populate("author");
+    const data = await blogModel.findOne({ _id: params }).populate("author");
       console.log(data.author._id.toString());
+ console.log(token._id)
+    if (params && token._id === data.author._id.toString()) {
+      
 
-      if (data.author._id.toString() === userId) {
+      
         blogModel
           .findOneAndUpdate(
             { _id: params },
@@ -173,9 +174,8 @@ const updateBlog = async (req, res) => {
           .catch((err) => {
             res.json(err);
           });
-      } else {
-        res.json({ error: "update operation cannot be performed by you" });
-      }
+      
+      
     } else {
       res.json({ error: "You cannot update" });
     }

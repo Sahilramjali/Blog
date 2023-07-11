@@ -11,8 +11,8 @@ app.use(express.json());
 
 
 app.use(cookieParser());
-app.use(bodyParser.json({limit:'200mb'}));
-app.use(bodyParser.urlencoded({extended:true,limit:"200mb"}))
+// app.use(bodyParser.json({limit:'1000kb'}));
+app.use(bodyParser.urlencoded({extended:true,limit:"1000kB"}))
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_NAME,
@@ -20,13 +20,7 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
   });
 
-//   router.use(
-//     cors({
-//         credentials:true,
-//         origin:"http://localhost:5173",
-//         // origin:process.env.FRONTENT_WEBSITE,
-//     })
-// );
+
 app.use('/api',require("./routes/index"));
 // app.use('/uploads',express.static('uploads'));
 
