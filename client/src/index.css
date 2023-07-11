@@ -213,7 +213,7 @@ header {
   display: flex;
   border-bottom: 0.5px solid gray;
   justify-content: start;
-
+  background-color: #ECEFF2;
   width: 100%;
   height: 30px;
   margin-bottom: 0.5rem;
@@ -224,6 +224,7 @@ header {
   border: none;
   outline: none;
   inset: 0;
+  background-color: #ECEFF2;
 }
 .Form-div .input-div input:focus {
   border-bottom: 0.1rem solid grey;
