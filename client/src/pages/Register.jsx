@@ -6,7 +6,7 @@ import { REGISTER_API_URL } from "../constants/constant";
 import { ValidateEmail, ValidateUsername } from "../utils/validation";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import SEO from "../components/SEO";
+import Seo from "../components/SEO";
 
 const InitialData = {
   username: "",
@@ -99,7 +99,7 @@ const Register = () => {
   };
   return (
     <>
-      <SEO
+      <Seo
         title="Blog || Register"
         content="Register login remember me register username password email"
         link="/register"

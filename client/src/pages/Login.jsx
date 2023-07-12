@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../hooks/userInfo";
 import { useCookies } from "react-cookie";
 import Cookies from "js-cookie";
-import SEO from "../components/SEO";
+import Seo from "../components/SEO";
 
 const InitialData = {
   email: "",
@@ -76,7 +76,7 @@ const Login = () => {
   };
   return (
     <>
-      <SEO
+      <Seo
         title="Blog || Login"
         content="login page which contain user email password and login button and toast to reflect weather user get login or not"
         link="/login"

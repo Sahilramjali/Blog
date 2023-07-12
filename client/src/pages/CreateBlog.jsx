@@ -7,7 +7,7 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 import useCookeiProvider from "../hooks/useCookeiProvider";
-import SEO from "../components/SEO";
+import Seo from "../components/SEO";
 const InitialData = {
   title: "",
   summary: "",
@@ -77,7 +77,7 @@ const CreateBlog = () => {
   };
   return (
     <>
-      <SEO
+      <Seo
         title="Blog || create"
         content="create blog title summmary content post file "
         Link="/create"

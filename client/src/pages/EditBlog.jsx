@@ -7,7 +7,7 @@ import "react-quill/dist/quill.snow.css";
 import { toast } from "react-hot-toast";
 
 import useCookeiProvider from "../hooks/useCookeiProvider";
-import SEO from '../components/SEO'
+import Seo from '../components/SEO'
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const EditBlog = () => {
@@ -86,7 +86,7 @@ const EditBlog = () => {
     }
   return (
     <>
-    <SEO
+    <Seo
       title={`Edit blog`}
       content="title id create your new post text summary file post toast "
       link="/edit/:id"

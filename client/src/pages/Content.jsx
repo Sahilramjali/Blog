@@ -6,7 +6,7 @@ import {
   DELETE_BLOG_BY_ID,
 } from "../constants/constant";
 import { toast } from "react-hot-toast";
-import SEO from "../components/SEO";
+import Seo from "../components/SEO";
 
 import useCookeiProvider from "../hooks/useCookeiProvider";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -69,7 +69,7 @@ const Content = () => {
 
   return (
     <>
-      <SEO
+      <Seo
         title={blogInfo?.title}
         content="image author name blog title content update delete buttons"
         link={`/post/${id}`}

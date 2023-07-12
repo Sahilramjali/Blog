@@ -4,7 +4,7 @@ import axios from "axios";
 import { GET_BLOG_API_URL } from "../constants/constant";
 import Loading from "../components/Loading";
 import BlogComponent from "./../components/BlogComponent";
-import SEO from "../components/SEO";
+import Seo from "../components/SEO";
 // import LoadingSpinner from "./../components/LoadingSpinner";
 
 const HomePage = () => {
@@ -66,7 +66,7 @@ const HomePage = () => {
     //     <LoadingSpinner />
     //   ) : (
     <>
-      <SEO
+      <Seo
         title="Blog"
         content="list of blogs along with its title,data of updated, author name,summary and image which redirect to its individual page"
         link="/"
