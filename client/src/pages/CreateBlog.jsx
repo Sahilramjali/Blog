@@ -5,8 +5,9 @@ import { POST_API_URL, formats, modules } from "../constants/constant";
 import axios from 'axios';
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
+
 import useCookeiProvider from "../hooks/useCookeiProvider";
+import SEO from '../components/SEO';
 const InitialData = {
   title: "",
   summary: "",
@@ -74,6 +75,13 @@ const CreateBlog = () => {
   }
   return (
     <section className="createBlog">
+      
+      <SEO
+      title="Blog || create"
+      content="create blog title summmary content post file "
+      Link="/create"
+      />
+
       <h3>Create your new Post</h3>
       <form onSubmit={submitCreatePost} >
         <div className="create-input">

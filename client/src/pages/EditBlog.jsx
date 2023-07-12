@@ -5,23 +5,28 @@ import { useNavigate, useParams } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { toast } from "react-hot-toast";
-import Cookies from "js-cookie"; 
+
 import useCookeiProvider from "../hooks/useCookeiProvider";
+import SEO from '../components/SEO'
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const EditBlog = () => {
   const navigate=useNavigate();
     const[blogData,setBlogData]=useState({});
     const {id}=useParams();
     const [user]=useCookeiProvider();
+    const [isLoading,setIsLoading]=useState(false);
     useEffect(()=>{
       const source = axios.CancelToken.source();
       const fetchblogData = async () => {
         try {
+          setIsLoading(true);
           const response = await axios.get(GET_SINGLE_BLOG_API_URL+id, {
             cancelToken: source.token,
           });
   
           setBlogData(response.data);
+          setIsLoading(false);
         } catch (errr) {
           console.log(errr);
         }
@@ -80,7 +85,15 @@ const EditBlog = () => {
       }))
     }
   return (
-    <section className="createBlog">
+    <>
+    {
+      isLoading?<LoadingSpinner/>:(<section className="createBlog">
+      <SEO
+      title={`Edit blog`}
+      content="title id create your new post text summary file post toast "
+      link="/edit/:id"
+      />
+      
       <h3>Create your new Post</h3>
       <form onSubmit={submitEditedPost} >
         <div className="create-input">
@@ -123,7 +136,9 @@ const EditBlog = () => {
           <button type="submit">Post</button>
         </div>
       </form>
-    </section>
+    </section>)
+    }
+    </>
   )
 }
 

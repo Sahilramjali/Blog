@@ -3,25 +3,28 @@ import {  useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { GET_SINGLE_BLOG_API_URL,DELETE_BLOG_BY_ID } from "../constants/constant";
 import {toast} from 'react-hot-toast';
-import placeholder from '../../public/image/image_placeholder.gif'
+import SEO from '../components/SEO'
 
 import useCookeiProvider from "../hooks/useCookeiProvider";
+import LoadingSpinner from "../components/LoadingSpinner";
 
  const Content = () => {
    const naviagte=useNavigate();
     const[blogInfo,setBlogInfo]=useState('');
     const {id}=useParams();
-    
+    const [isLoading, setIsLoading] = useState(false);
     const [user]=useCookeiProvider();
     useEffect(()=>{
       const source = axios.CancelToken.source();
       const fetchdata = async () => {
         try {
+          setIsLoading(true);
           const response = await axios.get(GET_SINGLE_BLOG_API_URL+id, {
             cancelToken: source.token,
           });
   
           setBlogInfo(response.data);
+          setIsLoading(false);
         } catch (errr) {
           console.log(errr);
         }
@@ -62,7 +65,16 @@ import useCookeiProvider from "../hooks/useCookeiProvider";
     }
  
   return (
-    <section className="content">
+   <>
+   {
+    isLoading?<LoadingSpinner/>:(
+      <section className="content">
+      <SEO
+      title={blogInfo?.title}
+      content="image author name blog title content update delete buttons"
+      link={`/post/${id}`}
+      />
+
        <h2>{blogInfo.title}</h2>
        <p className="info">
             <span className="author">{blogInfo?.author?.username}</span>
@@ -82,6 +94,9 @@ import useCookeiProvider from "../hooks/useCookeiProvider";
        </div>}
      
     </section>
+    )
+   }
+   </>
   )
 }
 

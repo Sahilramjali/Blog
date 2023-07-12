@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../hooks/userInfo";
 import {useCookies} from 'react-cookie';
 import Cookies from "js-cookie";
+import SEO from '../components/SEO';
 
 
 const InitialData = {
@@ -72,6 +73,12 @@ const Login = () => {
   };
   return (
     <section className="login-div">
+      <SEO
+      title="Blog || Login"
+      content="login page which contain user email password and login button and toast to reflect weather user get login or not"
+     link="/login"
+     />
+      
       <div className="Form-div">
         <h2>Login</h2>
         <form onSubmit={onSubmitHandler}>
