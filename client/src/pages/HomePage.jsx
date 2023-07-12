@@ -65,18 +65,17 @@ const HomePage = () => {
     //   {isLoading ? (
     //     <LoadingSpinner />
     //   ) : (
-        <section className="home-wrapper">
-          <SEO
-            title="Blog"
-            content="list of blogs along with its title,data of updated, author name,summary and image which redirect to its individual page"
-            link="/"
-          />
-
-          <BlogComponent items={data} />
-          {loading && page !== 1 ? <Loading /> : null}
-        </section>
-    //   )}
-    // </>
+    <>
+      <SEO
+        title="Blog"
+        content="list of blogs along with its title,data of updated, author name,summary and image which redirect to its individual page"
+        link="/"
+      />
+      <section className="home-wrapper">
+        <BlogComponent items={data} />
+        {loading && page !== 1 ? <Loading /> : null}
+      </section>
+    </>
   );
 };
 

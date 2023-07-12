@@ -86,13 +86,17 @@ const EditBlog = () => {
     }
   return (
     <>
-    {
-      isLoading?<LoadingSpinner/>:(<section className="createBlog">
-      <SEO
+    <SEO
       title={`Edit blog`}
       content="title id create your new post text summary file post toast "
       link="/edit/:id"
       />
+    {
+      isLoading?<LoadingSpinner/>:(
+      
+
+       <section className="createBlog">
+      
       
       <h3>Create your new Post</h3>
       <form onSubmit={submitEditedPost} >
@@ -136,7 +140,9 @@ const EditBlog = () => {
           <button type="submit">Post</button>
         </div>
       </form>
-    </section>)
+    </section>
+      
+     )
     }
     </>
   )

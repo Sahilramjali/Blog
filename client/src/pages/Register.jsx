@@ -3,14 +3,10 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
 import { useState } from "react";
 import { REGISTER_API_URL } from "../constants/constant";
-import {
-  ValidateEmail,
- 
-  ValidateUsername,
-} from "../utils/validation";
+import { ValidateEmail, ValidateUsername } from "../utils/validation";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import SEO from '../components/SEO';
+import SEO from "../components/SEO";
 
 const InitialData = {
   username: "",
@@ -102,71 +98,72 @@ const Register = () => {
     console.log(error);
   };
   return (
-    <section className="login-div">
+    <>
       <SEO
         title="Blog || Register"
         content="Register login remember me register username password email"
         link="/register"
       />
-
-      <div className="Form-div">
-        <h2>Register</h2>
-        <form onSubmit={onSubmitHandler}>
-          <div className="input-div">
-            <input
-              onChange={handleInput}
-              type="text"
-              placeholder="username"
-              value={Data.username}
-              name="username"
-            />
-          </div>
-          {error.nameError ? (
-            <div className="error">{error.nameError}</div>
-          ) : null}
-          <div className="input-div">
-            <input
-              onChange={handleInput}
-              type="text"
-              placeholder="email"
-              value={Data.email}
-              name="email"
-            />
-          </div>
-          {error.emailError ? (
-            <div className="error">{error.emailError}</div>
-          ) : null}
-          <div className="input-div">
-            <input
-              onChange={handleInput}
-              type={showPassword ? "text" : "password"}
-              placeholder="password"
-              value={Data.password}
-              name="password"
-            />
-            <div onClick={handleShowPassword}>
-              {showPassword ? (
-                <VisibilityOffIcon sx={{ color: "grey", fontSize: 20 }} />
-              ) : (
-                <VisibilityIcon sx={{ color: "grey", fontSize: 20 }} />
-              )}
+      <section className="login-div">
+        <div className="Form-div">
+          <h2>Register</h2>
+          <form onSubmit={onSubmitHandler}>
+            <div className="input-div">
+              <input
+                onChange={handleInput}
+                type="text"
+                placeholder="username"
+                value={Data.username}
+                name="username"
+              />
             </div>
+            {error.nameError ? (
+              <div className="error">{error.nameError}</div>
+            ) : null}
+            <div className="input-div">
+              <input
+                onChange={handleInput}
+                type="text"
+                placeholder="email"
+                value={Data.email}
+                name="email"
+              />
+            </div>
+            {error.emailError ? (
+              <div className="error">{error.emailError}</div>
+            ) : null}
+            <div className="input-div">
+              <input
+                onChange={handleInput}
+                type={showPassword ? "text" : "password"}
+                placeholder="password"
+                value={Data.password}
+                name="password"
+              />
+              <div onClick={handleShowPassword}>
+                {showPassword ? (
+                  <VisibilityOffIcon sx={{ color: "grey", fontSize: 20 }} />
+                ) : (
+                  <VisibilityIcon sx={{ color: "grey", fontSize: 20 }} />
+                )}
+              </div>
+            </div>
+            {error.passwordError ? (
+              <div className="error">{error.passwordError}</div>
+            ) : null}
+            <div className="button-div">
+              <button type="submit">Register</button>
+            </div>
+          </form>
+          <div className="text">
+            Already have account?{" "}
+            <Link to="/login">
+              <span>Login</span>{" "}
+            </Link>
           </div>
-          {error.passwordError ? (
-            <div className="error">{error.passwordError}</div>
-          ) : null}
-          <div className="button-div">
-            <button type="submit">Register</button>
-          </div>
-        </form>
-        <div className="text">
-          Already have account?{" "}
-          <Link to="/login">
-            <span>Login</span>{" "}
-          </Link>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
