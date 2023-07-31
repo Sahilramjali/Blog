@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { UserContext } from "./userInfo"
+import { UserContext } from "../context/userInfo"
 
 
 
