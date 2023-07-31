@@ -5,6 +5,7 @@ import { GET_BLOG_API_URL } from "../constants/constant";
 import Loading from "../components/Loading";
 import BlogComponent from "./../components/BlogComponent";
 import Seo from "../components/SEO";
+import id from "date-fns/locale/id";
 // import LoadingSpinner from "./../components/LoadingSpinner";
 
 const HomePage = () => {
@@ -21,7 +22,15 @@ const HomePage = () => {
         const response = await axios.get(
           `${GET_BLOG_API_URL}?limit=3&page=${page}`
         );
-        setData((prevData) => [...prevData, ...response.data.data]);
+        // setData((prevData) => [...new Set([ ...prevData,...response.data.data])]);
+        setData(prevData=>{
+          const newData=[...prevData,...response.data.data]
+          const ids = newData.map(({ _id }) => _id);
+const filtered = newData.filter(({ _id }, index) =>
+    !ids.includes(_id, index + 1));
+    return filtered;
+        })
+        console.log(data);
         setTotalPage(response.data.totalPages);
         setLoading(false);
         console.log("useeffect 1");
