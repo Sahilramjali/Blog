@@ -6,7 +6,7 @@ import { LOGIN_API_URL } from "../constants/constant";
 import { ValidateEmail } from "../utils/validation";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../hooks/userInfo";
+import { UserContext } from "../context/userInfo";
 import { useCookies } from "react-cookie";
 import Cookies from "js-cookie";
 import Seo from "../components/SEO";

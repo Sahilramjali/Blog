@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { useContext, useState } from "react";
-import { UserContext } from "../hooks/userInfo";
+import { UserContext } from "../context/userInfo";
 
 
 const NavBar = () => {

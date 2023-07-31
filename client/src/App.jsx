@@ -6,7 +6,7 @@ import HomePage from "./pages/HomePage";
 import Login from './pages/Login';
 import Register from './pages/Register';
 import { useContext } from 'react';
-import { UserContext } from './hooks/userInfo';
+import { UserContext } from './context/userInfo';
 import CreateBlog from './pages/CreateBlog';
 import  Content  from './pages/Content';
 import EditBlog from './pages/EditBlog';
