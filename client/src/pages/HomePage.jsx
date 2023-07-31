@@ -21,7 +21,7 @@ const HomePage = () => {
         const response = await axios.get(
           `${GET_BLOG_API_URL}?limit=3&page=${page}`
         );
-        setData((prevData) => [...prevData, ...response.data.data]);
+        setData((prevData) => [new Set([...prevData, ...response.data.data])]);
         setTotalPage(response.data.totalPages);
         setLoading(false);
         console.log("useeffect 1");
