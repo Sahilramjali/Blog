@@ -5,16 +5,17 @@ import { GET_BLOG_API_URL } from "../constants/constant";
 import Loading from "../components/Loading";
 import BlogComponent from "./../components/BlogComponent";
 import Seo from "../components/SEO";
-import id from "date-fns/locale/id";
-// import LoadingSpinner from "./../components/LoadingSpinner";
+
+ import LoadingSpinner from "./../components/LoadingSpinner";
 
 const HomePage = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   // const[tempData,setTempData]=useState(0);
+  
   const fetchMoreData = useCallback(async () => {
     try {
       if (page <= totalPage) {
@@ -22,26 +23,28 @@ const HomePage = () => {
         const response = await axios.get(
           `${GET_BLOG_API_URL}?limit=3&page=${page}`
         );
-        // setData((prevData) => [...new Set([ ...prevData,...response.data.data])]);
-        setData(prevData=>{
-          const newData=[...prevData,...response.data.data]
-          const ids = newData.map(({ _id }) => _id);
-const filtered = newData.filter(({ _id }, index) =>
-    !ids.includes(_id, index + 1));
-    return filtered;
-        })
-        console.log(data);
+         setData((prevData) => [ ...prevData,...response.data.data]);
+        // setData((prevData) => {
+        //   const newData = [...prevData, ...response.data.data];
+        //   const ids = newData.map(({ _id }) => _id);
+        //   const filtered = newData.filter(
+        //     ({ _id }, index) => !ids.includes(_id, index + 1)
+        //   );
+        //   return filtered;
+        // });
+       
         setTotalPage(response.data.totalPages);
         setLoading(false);
+        setIsLoading(false);
         console.log("useeffect 1");
       }
     } catch (error) {
       console.log(error);
     }
-  }, [page, totalPage]);
+  }, [page]);
   useEffect(() => {
-    setIsLoading(true);
-    fetchMoreData().then(() => setIsLoading(false));
+    
+    fetchMoreData();
   }, [fetchMoreData]);
 
   const handleInfiniteScroll = useCallback(async () => {
@@ -70,10 +73,10 @@ const filtered = newData.filter(({ _id }, index) =>
     return () => window.removeEventListener("scroll", handleInfiniteScroll);
   }, [handleInfiniteScroll]);
   return (
-    // <>
-    //   {isLoading ? (
-    //     <LoadingSpinner />
-    //   ) : (
+    <>
+      {isLoading ? (
+        <LoadingSpinner />
+    ) : (
     <>
       <Seo
         title="Blog"
@@ -84,8 +87,8 @@ const filtered = newData.filter(({ _id }, index) =>
         <BlogComponent items={data} />
         {loading && page !== 1 ? <Loading /> : null}
       </section>
-    </>
-  );
+    </>)}
+ </> );
 };
 
 export default HomePage;
