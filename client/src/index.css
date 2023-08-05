@@ -53,7 +53,7 @@ header {
  
   margin-bottom: 1.5rem;
   width: 100%;
- 
+  border-bottom: 1px solid black;
   padding-top: var(--padding-main);
   padding-bottom: var(--padding-main);
  

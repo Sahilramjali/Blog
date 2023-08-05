@@ -28,7 +28,7 @@ const Header = () => {
           <li><Link onClick={() => setVisible(!visible)} className="link" to='/register'>Register</Link></li>
         </ul>
       </div>} */}
-      <header>
+      <header className='Header'>
         <NavBar />
       </header>
     </>
